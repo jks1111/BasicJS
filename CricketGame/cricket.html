@@ -45,6 +45,12 @@
     <button onclick="localStorage.clear()
     resetScore();">RESET</button>
    <!-- srif localstorage.clear likhne se storage clean hojaega par memory me score set rhega to vo same previous score hi show karega  aur srif yha pe score nhi update karna display function ko bhi update karna hai-->
+
+   <h3 id="user-move"></h3>
+   <h3 id="computer-move"></h3>
+   <h3 id ="result"></h3>
+   <h3 id="score"></h3>
+
     <script>
       //let computerChoice;
       let scoreStr = localStorage.getItem('Score');
@@ -74,6 +80,7 @@
            loss : ${score.loss}
            tie : ${score.tie}`;
         };
+        ShowResult();
       }
       
       function generateComputerChoice() {
@@ -128,12 +135,19 @@
       function ShowResult(userMove, computerMove, result) {
         // console.log(score);
         localStorage.setItem('Score',JSON.stringify(score));
-        alert(
-          ` You have chosen ${userMove}. Computer choice is ${computerMove} and 
-          ${result}
-          ${score.displayScore()}
-          `
-        );
+        document.querySelector('#user-move').innerText = 
+         userMove  ? `You have chosen ${userMove}` : '';
+        document.querySelector('#computer-move').innerText =
+         computerMove  ? ` Computer choice is ${computerMove}` : '';
+        document.querySelector('#result').innerText =
+         result || 'Start Playing';
+        document.querySelector('#score').innerText = score.displayScore();
+        // alert(
+        //   ` You have chosen ${userMove}. Computer choice is ${computerMove} and 
+        //   ${result}
+        //   ${score.displayScore()}
+        //   `
+        // );
       }
     </script>
   </body>
