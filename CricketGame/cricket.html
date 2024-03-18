@@ -42,20 +42,40 @@
     >
       Stump
     </button>
-
+    <button onclick="localStorage.clear()
+    resetScore();">RESET</button>
+   <!-- srif localstorage.clear likhne se storage clean hojaega par memory me score set rhega to vo same previous score hi show karega  aur srif yha pe score nhi update karna display function ko bhi update karna hai-->
     <script>
       //let computerChoice;
-      let score = {
+      let scoreStr = localStorage.getItem('Score');
+      let score;
+     resetScore(scoreStr);
+      // if(scoreStr !== undefined){
+      //   score = JSON.parse(scoreStr);
+
+      // } else {
+      //   score = {
+      //   win: 0,
+      //   loss: 0,
+      //   tie: 0,
+        
+      // };
+      // } 
+      function resetScore(scoreStr){
+         score  = scoreStr ? JSON.parse(scoreStr) : {
         win: 0,
         loss: 0,
-        tie: 0,
-        displayScore: function () {
+         tie: 0,
+      };
+      
+      score.displayScore = function () {
           return `
            win : ${score.win}
            loss : ${score.loss}
            tie : ${score.tie}`;
-        },
-      };
+        };
+      }
+      
       function generateComputerChoice() {
         let randomNumber = Math.random() * 3;
 
@@ -107,6 +127,7 @@
 
       function ShowResult(userMove, computerMove, result) {
         // console.log(score);
+        localStorage.setItem('Score',JSON.stringify(score));
         alert(
           ` You have chosen ${userMove}. Computer choice is ${computerMove} and 
           ${result}
