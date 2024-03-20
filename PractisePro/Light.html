@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light</title>
+  <style>
+    body{
+      text-align: center;
+      margin: 187px;
+    }
+    #my-button{
+      height: 200px;
+      width: 200px;
+      border: none;
+      border-radius: 100px;
+    }
+    .js-odd{
+      background-color: aliceblue;
+    }
+    .js-even{
+      background-color: black;
+    }
+    .odd{
+      background-color: grey;
+    }
+    .even{
+      background-color: yellow;
+    }
+    
+  </style>
+</head>
+<body id="bodyy">
+  <div  >
+  <button id="my-button" onclick=" 
+  UpdateClick()"></button>
+  </div>
+  <div ></div>
+  <script>
+    let clickCnt = 0;
+    function UpdateClick(){
+      clickCnt++;
+      ButtonColor();
+    }
+    function ButtonColor(){
+      
+      let button = document.querySelector('#my-button');
+      let bodyy = document.querySelector('#bodyy');
+            if(clickCnt%2==0) {
+             button.classList.remove('js-odd');
+             button.classList.add('js-even');
+
+             bodyy.classList.remove('odd');
+             bodyy.classList.add('even');
+
+            }else {
+              button.classList.remove('js-even');
+             button.classList.add('js-odd');
+             bodyy.classList.remove('even');
+             bodyy.classList.add('odd');
+            }
+    }
+    ButtonColor();
+  </script>
+</body>
+</html>
